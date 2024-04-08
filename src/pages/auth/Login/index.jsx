@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { post } from "@/libraries/axios";
 import useResponse from "@/hooks/useResponse";
@@ -30,6 +30,9 @@ export default function Login() {
       });
 
       event.target.reset();
+
+      window.localStorage.setItem("token", loginResponse.data?.data.token);
+      navigate("/");
     } catch (error) {
       dispatch({
         loading: false,
@@ -40,13 +43,6 @@ export default function Login() {
     }
   };
 
-  useEffect(() => {
-    if (response.success && response.data?.token) {
-      window.localStorage.setItem("token", response.data?.token);
-      navigate("/");
-    }
-  }, [response]);
-
   return (
     <>
       {response.message && (
@@ -56,7 +52,7 @@ export default function Login() {
       )}
 
       <form onSubmit={handleLogin}>
-        <label htmlFor="email">Enter your email.</label>
+        <label htmlFor="email">Enter your email:</label>
         <input
           type="email"
           name="email"
@@ -65,7 +61,7 @@ export default function Login() {
           required
         />
 
-        <label htmlFor="password">Enter your password.</label>
+        <label htmlFor="password">Enter your password:</label>
         <input
           type="password"
           name="password"

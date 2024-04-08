@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { post } from "@/libraries/axios";
 import useResponse from "@/hooks/useResponse";
@@ -35,6 +35,12 @@ export default function Register() {
       });
 
       event.target.reset();
+
+      window.localStorage.setItem(
+        "token",
+        registrationResponse.data?.data.token
+      );
+      navigate("/");
     } catch (error) {
       dispatch({
         loading: false,
@@ -44,13 +50,6 @@ export default function Register() {
       });
     }
   };
-
-  useEffect(() => {
-    if (response.success && response.data?.token) {
-      window.localStorage.setItem("token", response.data?.token);
-      navigate("/");
-    }
-  }, [response]);
 
   return (
     <>
@@ -64,7 +63,7 @@ export default function Register() {
         {response.errors?.name && (
           <p className="text-red-700">{response.errors?.name}</p>
         )}
-        <label htmlFor="name">Enter your name.</label>
+        <label htmlFor="name">Enter your name:</label>
         <input
           type="text"
           name="name"
@@ -76,7 +75,7 @@ export default function Register() {
         {response.errors?.email && (
           <p className="text-red-700">{response.errors?.email}</p>
         )}
-        <label htmlFor="email">Enter your email.</label>
+        <label htmlFor="email">Enter your email:</label>
         <input
           type="email"
           name="email"
@@ -88,7 +87,7 @@ export default function Register() {
         {response.errors?.password && (
           <p className="text-red-700">{response.errors?.password}</p>
         )}
-        <label htmlFor="password">Enter your password.</label>
+        <label htmlFor="password">Enter your password:</label>
         <input
           type="password"
           name="password"
@@ -96,7 +95,7 @@ export default function Register() {
           placeholder="password"
           required
         />
-        <label htmlFor="password_confirmation">Confirm your password.</label>
+        <label htmlFor="password_confirmation">Confirm your password:</label>
         <input
           type="password"
           name="password_confirmation"
