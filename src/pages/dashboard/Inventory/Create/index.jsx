@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { post } from "@/libraries/axios";
 import useResponse from "@/hooks/useResponse";
@@ -30,6 +30,8 @@ export default function CreateInventory() {
       });
 
       event.target.reset();
+
+      navigate("/inventory");
     } catch (error) {
       dispatch({
         loading: false,
@@ -39,12 +41,6 @@ export default function CreateInventory() {
       });
     }
   };
-
-  useEffect(() => {
-    if (response.success) {
-      navigate("/inventory");
-    }
-  }, [response]);
 
   return (
     <>
@@ -60,7 +56,7 @@ export default function CreateInventory() {
         {response.errors?.name && (
           <p className="text-red-700">{response.errors?.name}</p>
         )}
-        <label htmlFor="name">Enter inventory name.</label>
+        <label htmlFor="name">Enter inventory name:</label>
         <input
           type="text"
           name="name"
@@ -72,7 +68,7 @@ export default function CreateInventory() {
         {response.errors?.description && (
           <p className="text-red-700">{response.errors?.description}</p>
         )}
-        <label htmlFor="description">Enter inventory description.</label>
+        <label htmlFor="description">Enter inventory description:</label>
         <textarea
           name="description"
           id="description"

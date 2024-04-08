@@ -9,7 +9,7 @@ export default function UpdateInventory() {
     useResponse();
   const [inventory, dispatchInventory] = useResponse();
 
-  const createInventory = async (event) => {
+  const updateInventory = async (event) => {
     event.preventDefault();
     const name = event.target.name.value.trim();
     const description = event.target.description.value.trim();
@@ -32,6 +32,8 @@ export default function UpdateInventory() {
       });
 
       event.target.reset();
+
+      navigate("/inventory");
     } catch (error) {
       dispatchInventoryUpdateResponse({
         loading: false,
@@ -68,12 +70,6 @@ export default function UpdateInventory() {
     getInventory();
   }, []);
 
-  useEffect(() => {
-    if (inventoryUpdateResponse.success) {
-      navigate("/inventory");
-    }
-  }, [inventoryUpdateResponse]);
-
   return (
     <>
       <button onClick={() => navigate("/inventory")}>Go back</button>
@@ -94,13 +90,13 @@ export default function UpdateInventory() {
             </p>
           )}
 
-          <form onSubmit={createInventory}>
+          <form onSubmit={updateInventory}>
             {inventoryUpdateResponse.errors?.name && (
               <p className="text-red-700">
                 {inventoryUpdateResponse.errors?.name}
               </p>
             )}
-            <label htmlFor="name">Enter inventory name.</label>
+            <label htmlFor="name">Name:</label>
             <input
               type="text"
               name="name"
@@ -115,7 +111,7 @@ export default function UpdateInventory() {
                 {inventoryUpdateResponse.errors?.description}
               </p>
             )}
-            <label htmlFor="description">Enter inventory description.</label>
+            <label htmlFor="description">Description:</label>
             <textarea
               name="description"
               id="description"
