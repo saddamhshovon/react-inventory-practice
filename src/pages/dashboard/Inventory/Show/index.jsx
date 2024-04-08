@@ -3,22 +3,22 @@ import { get } from "@/libraries/axios";
 import React, { useEffect } from "react";
 
 export default function Inventory() {
-  const [response, dispatch] = useResponse();
+  const [inventory, dispatchInventory] = useResponse();
 
   const getInventory = async () => {
     try {
-      dispatch({
+      dispatchInventory({
         loading: true,
       });
       const inventoryResponse = await get("inventories");
-      dispatch({
+      dispatchInventory({
         loading: false,
         status: inventoryResponse.status,
         message: inventoryResponse.data?.message,
         data: inventoryResponse.data?.data,
       });
     } catch (error) {
-      dispatch({
+      dispatchInventory({
         loading: false,
         status: error.response.status,
         message: error.response.data?.message,
@@ -34,15 +34,15 @@ export default function Inventory() {
   return (
     <>
       <h1>Inventory</h1>
-      {response.loading && <p>Loading......</p>}
-      {!response.loading && response.success ? (
+      {inventory.loading && <p>Loading......</p>}
+      {inventory.success ? (
         <ul>
-          <li>Id: {response.data.id}</li>
-          <li>Name: {response.data.name}</li>
-          <li>Description: {response.data.description}</li>
+          <li>Id: {inventory.data.id}</li>
+          <li>Name: {inventory.data.name}</li>
+          <li>Description: {inventory.data.description}</li>
         </ul>
       ) : (
-        <p>{response.message}</p>
+        <p>{inventory.message}</p>
       )}
     </>
   );

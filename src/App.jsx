@@ -7,18 +7,18 @@ import Register from "@/pages/auth/Register";
 
 import PrivateRouteOutlet from "@/components/RouteOutlets/PrivateRouteOutlet";
 
-import Dashboard from "@/pages/inventory/Dashboard";
+import Dashboard from "@/pages/dashboard/Dashboard";
 
-import InventoryOutlet from "@/pages/inventory/Inventory/InventoryOutlet";
-import Inventory from "@/pages/inventory/Inventory/Show";
-import CreateInventory from "@/pages/inventory/Inventory/Create";
-import UpdateInventory from "@/pages/inventory/Inventory/Update";
+import InventoryOutlet from "@/pages/dashboard/Inventory/InventoryOutlet";
+import Inventory from "@/pages/dashboard/Inventory/Show";
+import CreateInventory from "@/pages/dashboard/Inventory/Create";
+import UpdateInventory from "@/pages/dashboard/Inventory/Update";
 
-import ItemsOutlet from "@/pages/inventory/Items/ItemsOutlet";
-import Items from "@/pages/inventory/Items/Index";
-import ShowItem from "@/pages/inventory/Items/Show";
-import CreateItem from "@/pages/inventory/Items/Create";
-import UpdateItem from "@/pages/inventory/Items/Update";
+import ItemsOutlet from "@/pages/dashboard/Items/ItemsOutlet";
+import Items from "@/pages/dashboard/Items/Index";
+import ShowItem from "@/pages/dashboard/Items/Show";
+import CreateItem from "@/pages/dashboard/Items/Create";
+import UpdateItem from "@/pages/dashboard/Items/Update";
 
 export default function App() {
   return (

@@ -21,7 +21,7 @@ export default function Register() {
       });
 
       const registrationResponse = await post("register", {
-        name: name,
+        name,
         email,
         password,
         password_confirmation: passwordConfirmation,
@@ -64,30 +64,51 @@ export default function Register() {
           <p className="text-red-700">{response.errors?.name}</p>
         )}
         <label htmlFor="name">Enter your name.</label>
-        <input type="name" name="name" id="name" required />
+        <input
+          type="name"
+          name="name"
+          id="name"
+          placeholder="Your name"
+          required
+        />
 
         {response.errors?.email && (
           <p className="text-red-700">{response.errors?.email}</p>
         )}
         <label htmlFor="email">Enter your email.</label>
-        <input type="email" name="email" id="email" required />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="you@email.com"
+          required
+        />
 
         {response.errors?.password && (
           <p className="text-red-700">{response.errors?.password}</p>
         )}
         <label htmlFor="password">Enter your password.</label>
-        <input type="password" name="password" id="password" required />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="password"
+          required
+        />
         <label htmlFor="password_confirmation">Confirm your password.</label>
         <input
           type="password"
           name="password_confirmation"
           id="password_confirmation"
+          placeholder="password"
           required
         />
+
         <button type="submit" disabled={response.loading === true}>
           {response.loading === true ? "Registering..." : "Register"}
         </button>
       </form>
+
       <p>Already have an account?</p>
       <Link to="/login">Login</Link>
     </>

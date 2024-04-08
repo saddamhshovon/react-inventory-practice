@@ -56,9 +56,21 @@ export default function Login() {
       )}
       <form onSubmit={handleLogin}>
         <label htmlFor="email">Enter your email.</label>
-        <input type="email" name="email" id="email" required />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="you@email.com"
+          required
+        />
         <label htmlFor="password">Enter your password.</label>
-        <input type="password" name="password" id="password" required />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="password"
+          required
+        />
         <button type="submit" disabled={response.loading === true}>
           {response.loading === true ? "Logging in..." : "Login"}
         </button>
