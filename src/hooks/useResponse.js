@@ -18,7 +18,8 @@ const initialAction = {
 };
 
 const reducer = (state, action = initialAction) => {
-  if (action.loading === true) return { ...state, loading: action.loading };
+  if (action.loading === true)
+    return { ...state, loading: action.loading, success: false };
   switch (action.status) {
     case 200:
     case 201:
