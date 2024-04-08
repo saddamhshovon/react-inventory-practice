@@ -59,13 +59,14 @@ export default function Register() {
           {response.message}
         </p>
       )}
+
       <form onSubmit={handleRegistration}>
         {response.errors?.name && (
           <p className="text-red-700">{response.errors?.name}</p>
         )}
         <label htmlFor="name">Enter your name.</label>
         <input
-          type="name"
+          type="text"
           name="name"
           id="name"
           placeholder="Your name"

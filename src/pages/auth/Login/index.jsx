@@ -54,6 +54,7 @@ export default function Login() {
           {response.message}
         </p>
       )}
+
       <form onSubmit={handleLogin}>
         <label htmlFor="email">Enter your email.</label>
         <input
@@ -63,6 +64,7 @@ export default function Login() {
           placeholder="you@email.com"
           required
         />
+
         <label htmlFor="password">Enter your password.</label>
         <input
           type="password"
@@ -71,10 +73,12 @@ export default function Login() {
           placeholder="password"
           required
         />
+
         <button type="submit" disabled={response.loading === true}>
           {response.loading === true ? "Logging in..." : "Login"}
         </button>
       </form>
+
       <p>Don't have an account?</p>
       <Link to="/register">Register</Link>
     </>

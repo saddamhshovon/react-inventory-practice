@@ -40,8 +40,8 @@ export default function App() {
 
           <Route path="items/*" element={<ItemsOutlet />}>
             <Route path="" element={<Items />} />
+            <Route path="create" element={<CreateItem />} />
             <Route path=":id" element={<ShowItem />} />
-            <Route path=":id/create" element={<CreateItem />} />
             <Route path=":id/update" element={<UpdateItem />} />
           </Route>
         </Route>
