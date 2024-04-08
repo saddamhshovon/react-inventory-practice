@@ -33,8 +33,8 @@ export default function Inventory() {
 
   return (
     <>
-      <h1>Inventory</h1>
       {inventory.loading && <p>Loading......</p>}
+
       {inventory.success ? (
         <ul>
           <li>Id: {inventory.data.id}</li>

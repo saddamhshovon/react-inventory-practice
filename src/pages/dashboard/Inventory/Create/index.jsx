@@ -49,18 +49,20 @@ export default function CreateInventory() {
   return (
     <>
       <button onClick={() => navigate("/inventory")}>Go back</button>
+
       {response.message && (
         <p className={response.success ? "text-green-700" : "text-red-700"}>
           {response.message}
         </p>
       )}
+
       <form onSubmit={createInventory}>
         {response.errors?.name && (
           <p className="text-red-700">{response.errors?.name}</p>
         )}
         <label htmlFor="name">Enter inventory name.</label>
         <input
-          type="name"
+          type="text"
           name="name"
           id="name"
           placeholder="Inventory name"

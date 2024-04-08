@@ -77,7 +77,9 @@ export default function UpdateInventory() {
   return (
     <>
       <button onClick={() => navigate("/inventory")}>Go back</button>
+
       {inventory.loading && <p>Loading......</p>}
+
       {inventory.success ? (
         <>
           {inventoryUpdateResponse.message && (
@@ -91,6 +93,7 @@ export default function UpdateInventory() {
               {inventoryUpdateResponse.message}
             </p>
           )}
+
           <form onSubmit={createInventory}>
             {inventoryUpdateResponse.errors?.name && (
               <p className="text-red-700">
@@ -99,7 +102,7 @@ export default function UpdateInventory() {
             )}
             <label htmlFor="name">Enter inventory name.</label>
             <input
-              type="name"
+              type="text"
               name="name"
               id="name"
               placeholder="Inventory name"
