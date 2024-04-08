@@ -46,7 +46,7 @@ export default function UpdateItem() {
 
       event.target.reset();
 
-      navigate(`items/${id}`);
+      navigate(`/items/${id}`);
     } catch (error) {
       dispatchItemUpdateResponse({
         loading: false,
