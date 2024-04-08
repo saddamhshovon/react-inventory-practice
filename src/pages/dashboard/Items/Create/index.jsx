@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { post } from "@/libraries/axios";
 import useResponse from "@/hooks/useResponse";
@@ -52,8 +52,6 @@ export default function CreateItem() {
     }
   };
 
-  useEffect(() => {}, [response]);
-
   return (
     <>
       <button onClick={() => navigate("/items")}>Go back</button>
@@ -68,7 +66,7 @@ export default function CreateItem() {
         {response.errors?.name && (
           <p className="text-red-700">{response.errors?.name}</p>
         )}
-        <label htmlFor="name">Enter item name.</label>
+        <label htmlFor="name">Enter item name:</label>
         <input
           type="text"
           name="name"
@@ -80,7 +78,7 @@ export default function CreateItem() {
         {response.errors?.description && (
           <p className="text-red-700">{response.errors?.description}</p>
         )}
-        <label htmlFor="description">Enter item description.</label>
+        <label htmlFor="description">Enter item description:</label>
         <textarea
           name="description"
           id="description"
@@ -92,7 +90,7 @@ export default function CreateItem() {
         {response.errors?.quantity && (
           <p className="text-red-700">{response.errors?.quantity}</p>
         )}
-        <label htmlFor="name">Enter item quantity.</label>
+        <label htmlFor="name">Enter item quantity:</label>
         <input
           type="number"
           name="quantity"
