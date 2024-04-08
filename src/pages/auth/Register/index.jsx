@@ -46,7 +46,6 @@ export default function Register() {
   };
 
   useEffect(() => {
-    console.log("effecting.");
     if (response.success && response.data?.token) {
       window.localStorage.setItem("token", response.data?.token);
       navigate("/");
@@ -55,21 +54,27 @@ export default function Register() {
 
   return (
     <>
-      {!response.loading && !response.success && <p>{response.message}</p>}
+      {response.message && (
+        <p className={response.success ? "text-green-700" : "text-red-700"}>
+          {response.message}
+        </p>
+      )}
       <form onSubmit={handleRegistration}>
-        {!response.loading && !response.success && response.errors?.name && (
-          <p>{response.errors?.name}</p>
+        {response.errors?.name && (
+          <p className="text-red-700">{response.errors?.name}</p>
         )}
         <label htmlFor="name">Enter your name.</label>
         <input type="name" name="name" id="name" required />
-        {!response.loading && !response.success && response.errors?.email && (
-          <p>{response.errors?.email}</p>
+
+        {response.errors?.email && (
+          <p className="text-red-700">{response.errors?.email}</p>
         )}
         <label htmlFor="email">Enter your email.</label>
         <input type="email" name="email" id="email" required />
-        {!response.loading &&
-          !response.success &&
-          response.errors?.password && <p>{response.errors?.password}</p>}
+
+        {response.errors?.password && (
+          <p className="text-red-700">{response.errors?.password}</p>
+        )}
         <label htmlFor="password">Enter your password.</label>
         <input type="password" name="password" id="password" required />
         <label htmlFor="password_confirmation">Confirm your password.</label>

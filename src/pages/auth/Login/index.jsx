@@ -49,7 +49,11 @@ export default function Login() {
 
   return (
     <>
-      {!response.loading && !response.success && <p>{response.message}</p>}
+      {response.message && (
+        <p className={response.success ? "text-green-700" : "text-red-700"}>
+          {response.message}
+        </p>
+      )}
       <form onSubmit={handleLogin}>
         <label htmlFor="email">Enter your email.</label>
         <input type="email" name="email" id="email" required />
