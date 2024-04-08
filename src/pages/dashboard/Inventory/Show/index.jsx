@@ -1,9 +1,12 @@
+import DeleteModal from "@/components/Modals/DeleteModal";
 import useResponse from "@/hooks/useResponse";
 import { get } from "@/libraries/axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 export default function Inventory() {
   const [inventory, dispatchInventory] = useResponse();
+  const [inventoryDeleted, dispatchInventoryDeleted] = useResponse();
+  const deleteModalRef = useRef(null);
 
   const getInventory = async () => {
     try {
@@ -29,21 +32,34 @@ export default function Inventory() {
 
   useEffect(() => {
     getInventory();
-  }, []);
+  }, [inventoryDeleted]);
 
   return (
     <>
       {inventory.loading && <p>Loading......</p>}
 
       {inventory.success ? (
-        <ul>
-          <li>Id: {inventory.data.id}</li>
-          <li>Name: {inventory.data.name}</li>
-          <li>Description: {inventory.data.description}</li>
-        </ul>
+        <>
+          <ul>
+            <li>Id: {inventory.data.id}</li>
+            <li>Name: {inventory.data.name}</li>
+            <li>Description: {inventory.data.description}</li>
+          </ul>
+          <button onClick={() => deleteModalRef.current.showModal()}>
+            Delete
+          </button>
+        </>
       ) : (
         <p>{inventory.message}</p>
       )}
+
+      <DeleteModal
+        message={"Confirm deleting this inventory?"}
+        url={"inventories"}
+        ref={deleteModalRef}
+        state={inventoryDeleted}
+        dispatch={dispatchInventoryDeleted}
+      />
     </>
   );
 }
